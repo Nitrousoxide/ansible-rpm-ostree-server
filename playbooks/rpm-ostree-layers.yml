@@ -1,0 +1,4 @@
+- name: Install podman-compose package
+  community.general.rpm_ostree_pkg:
+    name: podman-compose
+    state: present
