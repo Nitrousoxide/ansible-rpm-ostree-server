@@ -13,7 +13,13 @@
       register: ostree_status
       failed_when: ostree_status.rc == "999"  # Don't fail, regardless of return code
 
+    - name: Cancel a current rpm-ostree update when an update is currently running.
+      ansible.builtin.command: rpm-ostree cancel
+      when: ostree_status.rc != 1
+
     - name: Install desired applications as layered packages
       community.general.rpm_ostree_pkg:
         name: podman-compose
         state: present
+    - debug:
+      msg: "A reboot is required to complete installation / removal of these packages"
