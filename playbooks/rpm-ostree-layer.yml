@@ -1,9 +1,17 @@
 ---
-# tasks file for layered_packages
-- hosts: coreos
-become: yes
-tasks:
-  - name: Check to see if an rpm-ostree transaction is currently running
-    ansible.builtin.command: pgrep rpm-ostree
-    register: ostree_status
-    failed_when: ostree_status.rc == "999"  # Don't fail, regardless of return code
+- name: Check if server is updating using ostree
+  hosts: coreos
+  become: true
+  
+  tasks:
+    - name: Check ostree status
+      command: ostree admin status
+      register: ostree_status
+      
+    - name: Check if update is running
+      set_fact:
+        update_running: "{{ 'true' if 'running' in ostree_status.stdout else 'false' }}"
+      
+    - name: Display status
+      debug:
+        msg: "Ostree update is currently {{ 'running' if update_running == 'true' else 'not running' }} on {{ inventory_hostname }}"
