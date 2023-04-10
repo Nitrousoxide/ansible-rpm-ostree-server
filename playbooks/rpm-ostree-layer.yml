@@ -1,17 +1,22 @@
 ---
-- name: Check if server is updating using ostree
+- name: Check if server is updating using ostree and ensure podman-compose is installed
   hosts: coreos
   become: true
-  
+
   tasks:
     - name: Check ostree status
       command: ostree admin status
       register: ostree_status
-      
+
     - name: Check if update is running
       set_fact:
         update_running: "{{ 'true' if 'running' in ostree_status.stdout else 'false' }}"
-      
+
+    - name: Ensure podman-compose is installed
+      package:
+        name: podman-compose
+        state: present
+
     - name: Display status
       debug:
-        msg: "Ostree update is currently {{ 'running' if update_running == 'true' else 'not running' }} on {{ inventory_hostname }}"
+        msg: "Ostree update is currently {{ 'running' if update_running == 'true' else 'not running' }} and podman-compose is installed on {{ inventory_hostname }}"
