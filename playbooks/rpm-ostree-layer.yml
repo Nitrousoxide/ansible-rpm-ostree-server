@@ -1,7 +1,9 @@
 ---
 # tasks file for layered_packages
-
-- name: Check to see if an rpm-ostree transaction is currently running
-  ansible.builtin.command: pgrep rpm-ostree
-  register: ostree_status
-  failed_when: ostree_status.rc == "999"  # Don't fail, regardless of return code
+- hosts: coreos
+become: yes
+tasks:
+  - name: Check to see if an rpm-ostree transaction is currently running
+    ansible.builtin.command: pgrep rpm-ostree
+    register: ostree_status
+    failed_when: ostree_status.rc == "999"  # Don't fail, regardless of return code
