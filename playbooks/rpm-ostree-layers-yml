@@ -1,0 +1,5 @@
+- name: Install overlay package
+  community.general.rpm_ostree_pkg:
+    name: podman-compose
+    state: present
+    
