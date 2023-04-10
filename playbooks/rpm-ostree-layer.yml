@@ -22,4 +22,4 @@
         name: podman-compose
         state: present
     - debug:
-      msg: "A reboot is required to complete installation / removal of these packages"
+        msg: "A reboot is required to complete installation / removal of these packages"
