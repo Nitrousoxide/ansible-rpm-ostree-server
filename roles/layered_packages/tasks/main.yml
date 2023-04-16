@@ -20,6 +20,9 @@
       loop: "{{ layered_package_install }}"
     - debug:
         msg: "A reboot is required to complete installation / removal of these packages"
+    - name: Check to see if update is pending
+      ansible.builtin.command: rpm-ostree status  --pending-exit-77
+      register: ostree_status
     - name: reboot if new stuff was installed
       reboot:
         reboot_timeout: 300
