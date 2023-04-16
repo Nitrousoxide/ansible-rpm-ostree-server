@@ -20,3 +20,8 @@
       loop: "{{ layered_package_install }}"
     - debug:
         msg: "A reboot is required to complete installation / removal of these packages"
+    - name: reboot if new stuff was installed
+      reboot:
+        reboot_timeout: 300
+      when:
+        - ostree_status.rc != 77
