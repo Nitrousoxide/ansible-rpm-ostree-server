@@ -20,6 +20,3 @@
       loop: "{{ layered_package_install }}"
     - debug:
         msg: "A reboot is required to complete installation / removal of these packages"
-    - name: Check ostree status
-      ostree_status:
-      register: ostree_status_output
