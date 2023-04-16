@@ -1,6 +1,16 @@
-Update variables in ./group_vars/all to add/remove packages and other elements to the server's installation
+Ansible Server Setup
+====================
 
+
+
+
+Initial Ansible
+---------------
 Update the hosts file to reference the servers you will want to be updated.  If you've defined them in your ~/.ssh/config file you can use those names, otherwise you will need to use the server's dns or ip address.
+
+Update variables in `./group_vars/all` to add/remove packages and other elements to the server's installation
+
+to install the requirements run: ansible-galaxy install -r requirements.yml
 
 run:  ansible-playbook ./playbook_base.yml  in root of directory to apply roles/tasks
 

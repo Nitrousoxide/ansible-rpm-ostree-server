@@ -1,0 +1,11 @@
+  - name: Check if user is lingering
+    stat:
+      path: "/var/lib/systemd/linger/{{ container_run_as_user }}"
+    register: user_lingering
+    when: container_run_as_user != "root"
+
+  - name: Enable lingering if needed
+    command: "loginctl enable-linger {{ container_run_as_user }}"
+    when:
+      - container_run_as_user != "root"
+      - not user_lingering.stat.exists

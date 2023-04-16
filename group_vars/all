@@ -8,3 +8,6 @@ layered_package_install:
   - cockpit-system
   - podman-compose
   - qemu-guest-agent
+
+container_run_as_user: core
+container_run_as_group: core
