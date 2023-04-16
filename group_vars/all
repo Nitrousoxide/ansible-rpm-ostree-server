@@ -4,7 +4,7 @@ layered_package_install:
   - cockpit-ostree
   - cockpit-pcp
   - cockpit-podman
-  - vcockpit-storaged
+  - cockpit-storaged
   - cockpit-system
   - podman-compose
   - qemu-guest-agent
