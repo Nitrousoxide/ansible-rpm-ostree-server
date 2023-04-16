@@ -1,5 +1,5 @@
 ---
 
-- hosts: coreos
+- hosts: [coreos]
   roles:
     - { role: layered_packages }
