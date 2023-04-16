@@ -19,7 +19,10 @@
 
     - name: Install desired applications as layered packages
       community.general.rpm_ostree_pkg:
-        name: podman-compose
+        name: "{{ item }}"
         state: present
+        become: yes
+        become_method: sudo
+        loop: "{{ layered_package_install }}"
     - debug:
         msg: "A reboot is required to complete installation / removal of these packages"
