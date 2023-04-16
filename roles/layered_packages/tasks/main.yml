@@ -23,6 +23,6 @@
     - name: reboot if new stuff was installed
       reboot:
         reboot_timeout: 300
-      become: yes
       when:
-        - ostree_status.rc != 77
+        - ansible_pkg_mgr == "atomic_container"
+        - ostree.rc != 77
