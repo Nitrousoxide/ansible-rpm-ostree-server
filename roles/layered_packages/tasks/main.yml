@@ -1,9 +1,4 @@
----
-- name: Check if server is updating using ostree and ensure podman-compose is installed
-  hosts: coreos
-  become: true
 
-  tasks:
     - name: Check ostree status
       command: ostree admin status
       register: ostree_status
