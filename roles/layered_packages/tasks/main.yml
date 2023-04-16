@@ -23,5 +23,6 @@
     - name: reboot if new stuff was installed
       reboot:
         reboot_timeout: 300
+      become: yes
       when:
         - ostree_status.rc != 77
