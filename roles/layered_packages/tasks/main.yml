@@ -25,4 +25,4 @@
         reboot_timeout: 300
       become: yes
       when:
-        - ostree_status.rc = 77
+        - ostree_status.rc == 77
