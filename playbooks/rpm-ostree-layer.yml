@@ -23,6 +23,7 @@
         state: present
         become: yes
         become_method: sudo
-        loop: "{{ layered_package_install }}"
+        with_items: 
+          - "{{ layered_package_install }}"
     - debug:
         msg: "A reboot is required to complete installation / removal of these packages"
