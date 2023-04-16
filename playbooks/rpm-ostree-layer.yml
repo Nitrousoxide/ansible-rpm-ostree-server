@@ -24,6 +24,12 @@
         become: yes
         become_method: sudo
         with_items: 
-          - "{{ layered_package_install }}"
+            - cockpit-ostree
+            - cockpit-pcp
+            - cockpit-podman
+            - cockpit-storaged
+            - cockpit-system
+            - podman-compose
+            - qemu-guest-agent
     - debug:
         msg: "A reboot is required to complete installation / removal of these packages"
